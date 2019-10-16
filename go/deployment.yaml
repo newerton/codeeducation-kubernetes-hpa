@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: go-hpa
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-hpa
+    spec:
+      containers:
+        - name: go-hpa
+          image: newerton/golang-hpa
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "40m"
+              memory: "80Mi"
+            limits:
+              cpu: "80m"
+              memory: "100Mi"
